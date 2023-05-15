@@ -172,6 +172,20 @@ RSpec.describe LinkedList do
     list.append('shu')
     list.append('blop')
     list.pop
+    
     expect(list.to_string).to eq('deep woo shi shu')
+  end
+
+  it 'makes several appends and tests pop method twice' do
+    list = LinkedList.new
+    list.append('deep')
+    list.append('woo')
+    list.append('shi')
+    list.append('shu')
+    list.append('blop')
+    list.pop
+    list.pop
+
+    expect(list.to_string).to eq('deep woo shi')
   end
 end
