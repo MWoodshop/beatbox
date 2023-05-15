@@ -29,7 +29,7 @@ class LinkedList
     end
   end
 
-  def insert(data, position)
+  def insert(position, data)
     new_node = Node.new(data)
     if position == 0
       new_node.next_node = @head
