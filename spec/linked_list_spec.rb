@@ -128,4 +128,14 @@ RSpec.describe LinkedList do
     list.append('suu')
     expect { list.insert(5, 'woo') }.to raise_error('Invalid position')
   end
+
+  it 'tests to_string after two appends, one prepend, one insert' do
+    list = LinkedList.new
+    list.append('plop')
+    list.append('suu')
+    list.prepend('dop')
+    list.insert(1, 'woo')
+
+    expect(list.to_string).to eq('dop woo plop suu')
+  end
 end
