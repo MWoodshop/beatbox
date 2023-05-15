@@ -18,4 +18,12 @@ class BeatBox
   def count
     @list.count
   end
+
+  def play
+    current_node = @list.head
+    until current_node.nil?
+      `say -r 500 -v Samantha #{current_node.data}`
+      current_node = current_node.next_node
+    end
+  end
 end
