@@ -7,4 +7,10 @@ RSpec.describe Node do
 
     expect(list).to be_an_instance_of(LinkedList)
   end
+
+  it 'list.head returns nil' do
+    list = LinkedList.new
+
+    expect(list.head).to eq(nil)
+  end
 end

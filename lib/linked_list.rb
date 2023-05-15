@@ -1,5 +1,8 @@
 class LinkedList
-  attr_reader :data
+  attr_accessor :tail, :head
 
-  def initialize; end
+  def initialize
+    @head = nil
+    @tail = nil
+  end
 end
