@@ -7,5 +7,9 @@ RSpec.describe Node do
     expect(node).to be_an_instance_of(Node)
   end
 
+  it 'Returns "plop" on node.data' do
+    node = Node.new('plop')
 
+    expect(node.data).to eq('plop')
+  end
 end
