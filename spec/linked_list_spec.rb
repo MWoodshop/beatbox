@@ -99,4 +99,13 @@ RSpec.describe LinkedList do
 
     expect(list.to_string).to eq('dop plop suu')
   end
+
+  it 'makes two appends then one prepend and returns list.count as 3' do
+    list = LinkedList.new
+    list.append('plop')
+    list.append('suu')
+    list.prepend('dop')
+
+    expect(list.count).to eq(3)
+  end
 end
