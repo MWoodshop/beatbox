@@ -1,0 +1,2 @@
+class BeatBox
+end
