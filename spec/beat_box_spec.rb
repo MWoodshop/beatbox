@@ -9,4 +9,10 @@ RSpec.describe BeatBox do
 
     expect(bb).to be_an_instance_of(BeatBox)
   end
+
+  it 'create a linked list on beat_box' do
+    bb = BeatBox.new
+
+    expect(bb.list.head).to eq(nil)
+  end
 end
