@@ -161,5 +161,6 @@ RSpec.describe LinkedList do
     list.append('blop')
 
     expect(list.includes?('deep')).to eq(true)
+    expect(list.includes?('dep')).to eq(false)
   end
 end
