@@ -23,4 +23,12 @@ RSpec.describe BeatBox do
     expect(bb.list.head.data).to eq('deep')
     expect(bb.list.head.next_node.data).to eq('doo')
   end
+
+  it 'append a string and test count method' do
+    bb = BeatBox.new
+    bb.append('deep doo ditt')
+    bb.append('woo hoo shu')
+
+    expect(bb.count).to eq(6)
+  end
 end
