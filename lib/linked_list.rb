@@ -45,6 +45,30 @@ class LinkedList
     end
   end
 
+  def find(start_index, n)
+    current_node = @head
+    index = 0
+
+    # Traverse the list until we reach the start index
+    while index < start_index && !current_node.nil?
+      current_node = current_node.next_node
+      index += 1
+    end
+
+    unless current_node.nil?
+      result = []
+      # Traverse n nodes and collect the data values
+      while n > 0 && !current_node.nil?
+        result << current_node.data
+        current_node = current_node.next_node
+        n -= 1
+      end
+      return result.join(' ')
+    end
+
+    nil
+  end
+
   def count
     count = 0
     current_node = @head
