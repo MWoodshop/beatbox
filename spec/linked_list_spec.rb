@@ -13,4 +13,11 @@ RSpec.describe Node do
 
     expect(list.head).to eq(nil)
   end
+
+  it 'list.append returns "doop"' do
+    list = LinkedList.new
+    list.append('doop')
+
+    expect(list.head.data).to eq('doop')
+  end
 end
