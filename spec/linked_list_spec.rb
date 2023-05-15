@@ -121,4 +121,11 @@ RSpec.describe LinkedList do
     expect(list.head.next_node.next_node.data).to eq('plop')
     expect(list.head.next_node.next_node.next_node.data).to eq('suu')
   end
+
+  it 'raises an error if the position is invalid' do
+    list = LinkedList.new
+    list.append('plop')
+    list.append('suu')
+    expect { list.insert(5, 'woo') }.to raise_error('Invalid position')
+  end
 end
