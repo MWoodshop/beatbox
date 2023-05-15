@@ -57,9 +57,10 @@ RSpec.describe LinkedList do
 
   it 'append "deep", return it in data and return nil in next_node' do
     list = LinkedList.new
+    list.append('doop')
     list.append('deep')
 
-    expect(list.head.data).to eq('deep')
-    expect(list.head.next_node).to eq(nil)
+    expect(list.head.next_node.data).to eq('deep')
+    expect(list.head.next_node.next_node).to eq(nil)
   end
 end
