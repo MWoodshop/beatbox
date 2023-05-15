@@ -153,7 +153,7 @@ RSpec.describe LinkedList do
   end
 
   it 'makes several appends and tests includes? method' do
-        list = LinkedList.new
+    list = LinkedList.new
     list.append('deep')
     list.append('woo')
     list.append('shi')
@@ -162,5 +162,16 @@ RSpec.describe LinkedList do
 
     expect(list.includes?('deep')).to eq(true)
     expect(list.includes?('dep')).to eq(false)
+  end
+
+  it 'makes several appends and tests pop method' do
+    list = LinkedList.new
+    list.append('deep')
+    list.append('woo')
+    list.append('shi')
+    list.append('shu')
+    list.append('blop')
+    list.pop
+    expect(list.to_string).to eq('deep woo shi shu')
   end
 end
