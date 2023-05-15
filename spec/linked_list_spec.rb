@@ -84,4 +84,11 @@ RSpec.describe LinkedList do
     expect(list.to_string).to eq('plop')
   end
 
+  it 'prepends "dop" and returns "dop"' do
+    list = LinkedList.new
+    list.prepend('dop')
+
+    expect(list.head.data).to eq('dop')
+  end
+
 end
