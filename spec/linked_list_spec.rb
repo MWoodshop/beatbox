@@ -1,6 +1,7 @@
 require './lib/linked_list'
 require './lib/node'
 
+# Iteration 1 starts here
 RSpec.describe LinkedList do
   it 'Exists and can be initialized.' do
     list = LinkedList.new
@@ -71,4 +72,16 @@ RSpec.describe LinkedList do
 
     expect(list.count).to eq(2)
   end
+end
+# Iteration 1 ends here
+
+# Iteration 2 starts here
+RSpec.describe LinkedList do
+  it 'creates a list, appends plop, to_string returns plop' do
+    list = LinkedList.new
+    list.append('plop')
+
+    expect(list.to_string).to eq('plop')
+  end
+
 end
