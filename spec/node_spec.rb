@@ -12,4 +12,9 @@ RSpec.describe Node do
 
     expect(node.data).to eq('plop')
   end
+
+  it 'Returns nil on next_node' do
+    node = Node.new('plop')
+    expect(node.next_node).to eq(nil)
+  end
 end
