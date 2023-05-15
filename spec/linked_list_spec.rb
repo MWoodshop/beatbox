@@ -108,4 +108,17 @@ RSpec.describe LinkedList do
 
     expect(list.count).to eq(3)
   end
+
+  it 'list.insert(1, "woo") returns "woo"' do
+    list = LinkedList.new
+    list.append('plop')
+    list.append('suu')
+    list.prepend('dop')
+    list.insert(1, 'woo')
+
+    expect(list.head.data).to eq('dop')
+    expect(list.head.next_node.data).to eq('woo')
+    expect(list.head.next_node.next_node.data).to eq('plop')
+    expect(list.head.next_node.next_node.next_node.data).to eq('suu')
+  end
 end
