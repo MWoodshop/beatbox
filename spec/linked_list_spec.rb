@@ -47,4 +47,11 @@ RSpec.describe LinkedList do
 
     expect(list.head).to eq(nil)
   end
+
+  it 'append doop and return head.next_node = nil' do
+    list = LinkedList.new
+    list.append('doop')
+
+    expect(list.head.next_node).to eq(nil)
+  end
 end
