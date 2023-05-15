@@ -20,4 +20,18 @@ RSpec.describe Node do
 
     expect(list.head.data).to eq('doop')
   end
+
+  it 'list.head.next_node returns nil' do
+    list = LinkedList.new
+    list.append('doop')
+
+    expect(list.head.next_node).to eq(nil)
+  end
+
+  it 'list.count returns 1' do
+    list = LinkedList.new
+    list.append('doop')
+
+    expect(list.count).to eq(1)
+  end
 end
