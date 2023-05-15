@@ -91,4 +91,12 @@ RSpec.describe LinkedList do
     expect(list.head.data).to eq('dop')
   end
 
+  it 'makes two appends then one prepend and returns to_string as "dop plop suu"' do
+    list = LinkedList.new
+    list.append('plop')
+    list.append('suu')
+    list.prepend('dop')
+
+    expect(list.to_string).to eq('dop plop suu')
+  end
 end
