@@ -54,4 +54,12 @@ RSpec.describe LinkedList do
 
     expect(list.head.next_node).to eq(nil)
   end
+
+  it 'append "deep", return it in data and return nil in next_node' do
+    list = LinkedList.new
+    list.append('deep')
+
+    expect(list.head.data).to eq('deep')
+    expect(list.head.next_node).to eq(nil)
+  end
 end
