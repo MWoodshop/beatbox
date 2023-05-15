@@ -25,5 +25,14 @@ class LinkedList
     end
     count
   end
-  
+
+  def to_string
+    current_node = @head
+    str = ''
+    until current_node.nil?
+      str += current_node.data + ' '
+      current_node = current_node.next_node
+    end
+    str.strip
+  end
 end
