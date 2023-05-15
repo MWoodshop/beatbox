@@ -16,10 +16,11 @@ RSpec.describe BeatBox do
     expect(bb.list.head).to eq(nil)
   end
 
-  it 'append "deep doo ditt" and return "deep" on list.head.data and "doo" on list.head.next_node.data' do
+  it 'append a string and test append method' do
     bb = BeatBox.new
     bb.append('deep doo ditt')
 
     expect(bb.list.head.data).to eq('deep')
+    expect(bb.list.head.next_node.data).to eq('doo')
   end
 end
