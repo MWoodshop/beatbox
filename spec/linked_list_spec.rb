@@ -1,7 +1,7 @@
 require './lib/linked_list'
 require './lib/node'
 
-RSpec.describe Node do
+RSpec.describe LinkedList do
   it 'Exists and can be initialized.' do
     list = LinkedList.new
 
@@ -40,5 +40,11 @@ RSpec.describe Node do
     list.append('doop')
 
     expect(list.to_string).to eq('doop')
+  end
+
+  it 'list.head returns nil' do
+    list = LinkedList.new
+
+    expect(list.head).to eq(nil)
   end
 end
