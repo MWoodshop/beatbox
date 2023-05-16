@@ -180,7 +180,7 @@ RSpec.describe LinkedList do
     list.append('shu')
     list.append('blop')
     list.pop
-    
+
     expect(list.to_string).to eq('deep woo shi shu')
   end
 
@@ -196,4 +196,5 @@ RSpec.describe LinkedList do
 
     expect(list.to_string).to eq('deep woo shi')
   end
+  # Iteration 2 ends here
 end
