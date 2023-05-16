@@ -40,13 +40,31 @@ RSpec.describe BeatBox do
     expect(bb.list.count).to eq(6)
   end
 
-  xit 'plays each word in the list' do
+  xit 'plays the audio of the beats' do
     beat_box = BeatBox.new
     beat_box.append('deep doo ditt woo hoo shu')
-    expect do
-      beat_box.play
-    end.to output("Playing deep...\ndeep played.\nPlaying doo...\ndoo played.\nPlaying ditt...\nditt played.\nPlaying woo...\nwoo played.\nPlaying hoo...\nhoo played.\nPlaying shu...\nshu played.\n").to_stdout
+    beat_box.play
+
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha deep").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha doo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha ditt").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha woo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha hoo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha shu").once
+    beat_box.play
   end
+
+  xit 'plays audio with multiple conditions on BeatBox' do
+    beat_box = BeatBox.new('deep dop dop deep')
+    beat_box.play
+
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha deep").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha dop").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha dop").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v Samantha deep").once
+    beat_box.play
+  end
+
   # Iteration 3 tests complete.
 
   # Iteration 4 tests begin.
@@ -75,5 +93,18 @@ RSpec.describe BeatBox do
     bb.prepend('tee tee tee Mississippi')
 
     expect(bb.all).to eq('tee tee tee deep')
+  end
+
+  it 'plays the beats at the expected rate' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v Samantha deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v Samantha dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v Samantha dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v Samantha deep").once
+
+    bb.play
   end
 end

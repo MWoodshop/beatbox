@@ -3,12 +3,14 @@ require './lib/linked_list'
 
 class BeatBox
   attr_reader :list
+  attr_accessor :rate
 
-  BEATS_LIST = %w[deep doo ditt woo hoo shu tee dee bop la na]
+  BEATS_LIST = %w[deep dop doo ditt woo hoo shu tee dee bop la na]
 
   def initialize(starting_word = nil)
     @list = LinkedList.new
     append(starting_word) if starting_word
+    @rate = 500
   end
 
   def append(data)
@@ -48,11 +50,10 @@ class BeatBox
     current_node = @list.head
     until current_node.nil?
       output += "Playing #{current_node.data}...\n"
-      system("say -r 500 -v Samantha #{current_node.data}")
+      system("say -r #{rate} -v Samantha #{current_node.data}")
       output += "#{current_node.data} played.\n"
       current_node = current_node.next_node
     end
-    puts output # for debugging purposes
     output
   end
 
