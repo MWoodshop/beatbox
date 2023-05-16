@@ -107,4 +107,18 @@ RSpec.describe BeatBox do
 
     bb.play
   end
+
+    it 'plays the beats at the expected rate with the voice Daniel' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.voice = 'Daniel'
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+
+    bb.play
+  end
 end
