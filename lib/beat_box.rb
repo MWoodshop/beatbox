@@ -7,11 +7,15 @@ class BeatBox
 
   BEATS_LIST = %w[deep dop doo ditt woo hoo shu tee dee bop la na]
 
+  DEFAULT_RATE = 500
+  # Using Samantha instead of Boing as my version of OSX doesn't have Boing.
+  DEFAULT_VOICE = 'Samantha'
+
   def initialize(starting_word = nil)
     @list = LinkedList.new
     append(starting_word) if starting_word
-    @rate = 500
-    @voice = 'Samantha'
+    @rate = DEFAULT_RATE
+    @voice = DEFAULT_VOICE
   end
 
   def append(data)
@@ -44,6 +48,14 @@ class BeatBox
 
   def count
     @list.count
+  end
+
+  def reset_voice
+    self.voice = DEFAULT_VOICE
+  end
+
+  def reset_rate
+    self.rate = DEFAULT_RATE
   end
 
   def play
