@@ -40,3 +40,35 @@ RSpec.describe BeatBox do
     expect(bb.list.count).to eq(6)
   end
 end
+
+require 'stringio'
+
+describe BeatBox do
+  describe '#play' do
+    it 'plays each word in the list' do
+      beat_box = BeatBox.new
+      beat_box.append('deep doo ditt woo hoo shu')
+
+      output = capture_stdout do
+        beat_box.play
+      end
+
+      expect(output).to eq("Playing deep...\ndeep played.\nPlaying doo...\ndoo played.\nPlaying ditt...\nditt played.\nPlaying woo...\nwoo played.\nPlaying hoo...\nhoo played.\nPlaying shu...\nshu played.\n")
+    end
+  end
+
+  def capture_stdout(&block)
+    old_stdout = $stdout
+    $stdout = StringIO.new
+    begin
+      yield
+      $stdout.string
+    ensure
+      $stdout = old_stdout
+    end
+  end
+end
+
+
+
+
