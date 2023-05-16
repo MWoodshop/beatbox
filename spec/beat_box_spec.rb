@@ -40,13 +40,31 @@ RSpec.describe BeatBox do
     expect(bb.list.count).to eq(6)
   end
 
-  xit 'plays each word in the list' do
+  it 'plays the audio of the beats' do
     beat_box = BeatBox.new
     beat_box.append('deep doo ditt woo hoo shu')
-    expect do
-      beat_box.play
-    end.to output("Playing deep...\ndeep played.\nPlaying doo...\ndoo played.\nPlaying ditt...\nditt played.\nPlaying woo...\nwoo played.\nPlaying hoo...\nhoo played.\nPlaying shu...\nshu played.\n").to_stdout
+    beat_box.play
+
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} deep").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} doo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} ditt").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} woo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} hoo").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} shu").once
+    beat_box.play
   end
+
+  it 'plays audio with multiple conditions on BeatBox' do
+    beat_box = BeatBox.new('deep dop dop deep')
+    beat_box.play
+
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} deep").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} dop").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} dop").once
+    expect(beat_box).to receive(:system).with("say -r #{beat_box.rate} -v #{beat_box.voice} deep").once
+    beat_box.play
+  end
+
   # Iteration 3 tests complete.
 
   # Iteration 4 tests begin.
@@ -75,5 +93,48 @@ RSpec.describe BeatBox do
     bb.prepend('tee tee tee Mississippi')
 
     expect(bb.all).to eq('tee tee tee deep')
+  end
+
+  it 'plays the beats at the expected rate' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+
+    bb.play
+  end
+
+  it 'plays the beats at the expected rate with the voice Daniel' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.voice = 'Daniel'
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+
+    bb.play
+  end
+
+  it 'plays the beats at default rate and voice' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.voice = 'Daniel'
+    bb.reset_rate
+    bb.reset_voice
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+
+    bb.play
   end
 end
