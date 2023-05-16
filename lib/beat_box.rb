@@ -20,10 +20,15 @@ class BeatBox
   end
 
   def play
+    output = ''
     current_node = @list.head
     until current_node.nil?
-      `say -r 500 -v Samantha #{current_node.data}`
+      output += "Playing #{current_node.data}...\n"
+      system("say #{current_node.data}")
+      output += "#{current_node.data} played.\n"
       current_node = current_node.next_node
     end
+    puts output # for debugging purposes
+    output
   end
 end
