@@ -40,7 +40,7 @@ RSpec.describe BeatBox do
     expect(bb.list.count).to eq(6)
   end
 
-  xit 'plays the audio of the beats' do
+  it 'plays the audio of the beats' do
     beat_box = BeatBox.new
     beat_box.append('deep doo ditt woo hoo shu')
     beat_box.play
@@ -54,7 +54,7 @@ RSpec.describe BeatBox do
     beat_box.play
   end
 
-  xit 'plays audio with multiple conditions on BeatBox' do
+  it 'plays audio with multiple conditions on BeatBox' do
     beat_box = BeatBox.new('deep dop dop deep')
     beat_box.play
 
@@ -95,7 +95,7 @@ RSpec.describe BeatBox do
     expect(bb.all).to eq('tee tee tee deep')
   end
 
-  xit 'plays the beats at the expected rate' do
+  it 'plays the beats at the expected rate' do
     bb = BeatBox.new('deep dop dop deep')
     bb.rate = 100 # Set the rate to 100
     bb.play
@@ -108,10 +108,26 @@ RSpec.describe BeatBox do
     bb.play
   end
 
-    it 'plays the beats at the expected rate with the voice Daniel' do
+  it 'plays the beats at the expected rate with the voice Daniel' do
     bb = BeatBox.new('deep dop dop deep')
     bb.rate = 100 # Set the rate to 100
     bb.voice = 'Daniel'
+    bb.play
+
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} dop").once
+    expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
+
+    bb.play
+  end
+
+  it 'plays the beats at default rate and voice' do
+    bb = BeatBox.new('deep dop dop deep')
+    bb.rate = 100 # Set the rate to 100
+    bb.voice = 'Daniel'
+    bb.reset_rate
+    bb.reset_voice
     bb.play
 
     expect(bb).to receive(:system).with("say -r #{bb.rate} -v #{bb.voice} deep").once
