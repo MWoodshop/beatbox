@@ -50,13 +50,19 @@ RSpec.describe BeatBox do
   # Iteration 3 tests complete.
 
   # Iteration 4 tests begin.
-  it 'checks for invalid beats.' do
+  it 'checks for invalid beats on append' do
     bb = BeatBox.new
     expect { bb.append('invalid beat') }.to output("Invalid beat: invalid. Skipping.\n").to_stdout
     expect(bb.count).to eq(0)
   end
 
-  it 'checks append against the BEATS_LIST' do
+  it 'checks for invalid beats on prepend' do
+    bb = BeatBox.new
+    expect { bb.prepend('invalid beat') }.to output("Invalid beat: invalid. Skipping.\n").to_stdout
+    expect(bb.count).to eq(0)
+  end
+
+  it 'checks append against the BEATS_LIST and returns all method as a string' do
     bb = BeatBox.new('deep')
     bb.append('Mississippi')
 
