@@ -68,4 +68,12 @@ RSpec.describe BeatBox do
 
     expect(bb.all).to eq('deep')
   end
+
+  it 'checks prepend against the BEATS_LIST and returns all method as a string' do
+    bb = BeatBox.new('deep')
+    bb.append('Mississippi')
+    bb.prepend('tee tee tee Mississippi')
+
+    expect(bb.all).to eq('tee tee tee deep')
+  end
 end
