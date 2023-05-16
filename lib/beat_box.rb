@@ -29,18 +29,14 @@ class BeatBox
     return if data.nil?
 
     words = data.split(' ')
-    invalid_words = []
-    words.reverse.each do |word|
+    words.each do |word|
       if BEATS_LIST.include?(word)
         @list.prepend(word)
       else
-        invalid_words << word
+        puts "Invalid beat: #{word}. Skipping."
+        return
       end
     end
-
-    return unless invalid_words.any?
-
-    puts "Invalid beats: #{invalid_words.join(', ')}. Skipping."
   end
 
   def count
